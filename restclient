@@ -16,3 +16,7 @@ GET http://localhost:8080/with-view
 
 POST http://localhost:8080/submit
 
+# Get a list of SMS messages
+
+GET http://localhost:8080/sms
+

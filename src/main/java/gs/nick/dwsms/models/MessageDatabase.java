@@ -5,8 +5,11 @@
  */
 package gs.nick.dwsms.models;
 
+import java.io.IOException;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.PriorityQueue;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +46,11 @@ public class MessageDatabase {
         this.max = max;
     }
     
+    /**
+     * Enqueue a TxtMessage as long as the db is not full
+     * @param msg
+     * @throws Exception 
+     */
     public void add(TxtMessage msg) throws Exception {
         if (msgQueue.size() > max) {
             throw new Exception("Database is full");
@@ -64,6 +72,15 @@ public class MessageDatabase {
             return msgQueue.poll();
         }
         return null;
+    }
+    
+    public Iterator<TxtMessage> iterator() {
+        return msgQueue.iterator();
+    }
+    
+    public String toJson() throws IOException {
+        ObjectMapper oMapper = new ObjectMapper();
+        return oMapper.writeValueAsString(msgQueue);
     }
     
     public void saveToFile(String fileName) {

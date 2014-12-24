@@ -6,11 +6,13 @@ import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.MessageFactory;
 import com.twilio.sdk.resource.instance.Message;
 import gs.nick.dwsms.MyConfig;
+import gs.nick.dwsms.models.MessageDatabase;
 import gs.nick.dwsms.models.TxtMessage;
 import gs.nick.dwsms.views.BasicView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -36,11 +38,13 @@ public class IndexResource {
     private Logger log;
     private MyConfig config;
     private DateTimeFormatter dateFormatter;
+    private MessageDatabase txtDb;
 
-    public IndexResource(MyConfig appConfig) {
+    public IndexResource(MyConfig appConfig, MessageDatabase db) {
         log = LoggerFactory.getLogger(IndexResource.class);
         config = appConfig;
         dateFormatter = DateTimeFormat.forPattern(config.getDateFormatPattern());
+        txtDb = db;
     }
 
     @GET
@@ -70,6 +74,12 @@ public class IndexResource {
             msg.send = LocalDateTime.parse(date, dateFormatter);
         }
         if (msg.isValid()) {
+            try {
+                txtDb.add(msg);
+            } catch (Exception ex) {
+                log.error("Trying to add when database full", ex);
+                return "{\"msg\":\"the database is full\"}";
+            }
             return oMapper.writeValueAsString(msg);
         } else {
             return "{\"msg\":\"msg object is not valid\"}";
@@ -79,6 +89,11 @@ public class IndexResource {
     @GET
     @Path("/sms")
     @Timed
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMessages() throws IOException {
+        return txtDb.toJson();
+    }
+
     public void sendMessage() throws TwilioRestException {
         String ACCOUNT_SID = "abc";
         String AUTH_TOKEN = "123";
