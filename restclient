@@ -1,0 +1,9 @@
+#  -*- restclient -*-
+
+# test dwsms
+
+GET http://localhost:8080/
+
+# test serving a static file
+
+GET http://localhost:8080/public/test.html

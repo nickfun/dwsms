@@ -1,0 +1,22 @@
+{
+    "server": {
+        "type": "default",
+        "gzip": {
+            "enabled": true
+        },
+        "applicationConnectors": [
+            {
+                "type": "http",
+                "port": 8080
+            }
+        ],
+        "adminConnectors": [
+            {
+                "type": "http",
+                "port": 8081
+            }
+        ]
+    },
+    
+    "appName": "dwsms"
+}

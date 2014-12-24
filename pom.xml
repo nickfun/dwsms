@@ -35,6 +35,18 @@
             <artifactId>dropwizard-views-freemarker</artifactId>
             <version>${dropwizard.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-assets</artifactId>
+            <version>${dropwizard.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio-java-sdk</artifactId>
+            <version>3.4.5</version>
+        </dependency>
 
     </dependencies>
 
@@ -69,7 +81,7 @@
                     <transformers>
                       <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                       <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                        <mainClass>gs.nick.dwbb.application.MyApplication</mainClass>
+                        <mainClass>gs.nick.dwsms.WebApplication</mainClass>
                       </transformer>
                     </transformers>
                   </configuration>
@@ -99,7 +111,7 @@
                     <mainClass>gs.nick.dwsms.WebApplication</mainClass>
                     <arguments>
                         <argument>server</argument>
-                        <argument>config.yml</argument>
+                        <argument>config.json</argument>
                     </arguments>
                 </configuration>
             </plugin>

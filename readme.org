@@ -1,0 +1,31 @@
+#+TITLE: dwsms
+#+AUTHOR: Nicholas Funnell
+
+* Project: DWSMS
+
+** Goals
+
+Demo a simple Dropwizard webapp that uses the Twilio API to send SMS messages.
+
+It can be used as a refrence for people who want to get started with Dropwizard. 
+It is also a simple demonstration of using Twilio to send SMS messages.
+
+** Running
+
+This project requires Java 7 and Maven
+
+1. Clone this repo: =git clone http://github.com/nickfun/dwsms.git=
+2. use maven to build the project: =mvn package=
+3. edit =config.json= to contain your Twilio dev tokens
+4. this builds a jar in /target you can run the jar: =java -jar target/server.jar server config.json=
+
+* Planning [2/5]
+
+** DONE Get URL Resources loaded into DW server
+** DONE Serve static files using AssetBundle
+** TODO Should load Twilio dev tokens from config.json
+** TODO should put all logs to /logs folder
+** TODO User can submit a future message [0/3]
+*** TODO message is a phone number, text, and date
+*** TODO message is stored in a priortity queue based on date
+*** TODO have a Resource to view submitted messages to verify they were saved
