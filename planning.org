@@ -1,6 +1,6 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [4/8]
+* Planning [4/9]
 
 ** DONE Get URL Resources loaded into DW server
 ** DONE Serve static files using AssetBundle
@@ -15,3 +15,12 @@
 *** TODO message is a phone number, text, and date
 *** TODO message is stored in a priortity queue based on date
 *** TODO have a Resource to view submitted messages to verify they were saved
+
+* Notes
+
+** Don't consider timezones
+Uhh, timezones. Always giving problems.
+The server will run in whatever timezone, and everything will be considerd in that timezone.
+
+*** TODO Does Twilio provide timezone of message that is received?
+something to read in the docs or talk to people

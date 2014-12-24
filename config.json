@@ -18,5 +18,19 @@
         ]
     },
     
-    "appName": "dwsms"
+    "appName": "dwsms",
+    
+    "logging": {
+        "level": "TRACE",
+        "appenders": [
+            {
+                "type": "file",
+                "currentLogFilename": "./logs/current.log",
+                "threshold": "ALL",
+                "archive": true,
+                "archivedLogFilenamePattern": "./log/archive-%d.log",
+                "archivedFileCount": 14,
+            }
+        ]
+    }
 }

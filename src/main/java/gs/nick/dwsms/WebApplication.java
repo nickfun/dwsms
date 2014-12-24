@@ -1,5 +1,6 @@
 package gs.nick.dwsms;
 
+import com.codahale.metrics.health.HealthCheck;
 import gs.nick.dwsms.resources.IndexResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -29,5 +30,13 @@ public class WebApplication extends Application<MyConfig> {
         log.info("app begins");
         log.info("java is" + System.getProperty("java.version"));
         e.jersey().register(new IndexResource());
+        e.healthChecks().register("dummy", new HealthCheck(){
+
+            @Override
+            protected HealthCheck.Result check() throws Exception {
+                log.debug("Dummy health check is run");
+                return Result.healthy();
+            }
+        });
     }
 }
