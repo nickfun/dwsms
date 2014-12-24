@@ -1,9 +1,14 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [2/5]
+* Planning [4/8]
 
 ** DONE Get URL Resources loaded into DW server
 ** DONE Serve static files using AssetBundle
+** DONE Should build simple HTML pages with FreeMarker backed views
+** DONE Should use FreeMarker inheritance to have flexible html
+** TODO Setup Backbone/Marionette app
+*** Is this needed?
+*** Maybe do SPA as a stretch goal...
 ** TODO Should load Twilio dev tokens from config.json
 ** TODO should put all logs to /logs folder
 ** TODO User can submit a future message [0/3]
