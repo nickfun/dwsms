@@ -2,6 +2,7 @@ package gs.nick.dwsms;
 
 import com.codahale.metrics.health.HealthCheck;
 import gs.nick.dwsms.models.MessageDatabase;
+import gs.nick.dwsms.models.TimerManager;
 import gs.nick.dwsms.resources.IndexResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -53,5 +54,6 @@ public class WebApplication extends Application<MyConfig> {
                 db.saveToFile("shutdown-database.txt");
             }
         });
+        e.lifecycle().manage(new TimerManager(appConfig.getFrequency()));
     }
 }

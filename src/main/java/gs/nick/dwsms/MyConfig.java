@@ -1,6 +1,7 @@
 package gs.nick.dwsms;
 
 import io.dropwizard.Configuration;
+import javax.validation.constraints.NotNull;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -16,8 +17,21 @@ public class MyConfig extends Configuration {
     @NotEmpty
     private String dateFormatPattern;
 
+    @NotNull
+    private Integer frequency;
+
     @NotEmpty
     private String fromPhoneNumber;
+
+    @JsonProperty
+    public Integer getFrequency() {
+        return frequency;
+    }
+
+    @JsonProperty
+    public void setFrequency(Integer fromfile) {
+        frequency = fromfile;
+    }
 
     @JsonProperty
     public String getFromPrhoneNumber() {

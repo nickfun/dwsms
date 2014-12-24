@@ -3,6 +3,8 @@ package gs.nick.dwsms;
 import gs.nick.dwsms.models.MessageDatabase;
 import gs.nick.dwsms.models.TxtMessage;
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 /**
  * Hey guess who forgot to add jUnit to the pom before he went out of town & has
@@ -18,6 +20,20 @@ public class Tests {
         Tests t = new Tests();
         t.testDbOrder();
         t.testRemoval();
+        t.testDateFormats();
+    }
+    
+    public void testDateFormats() {
+        System.out.println("testDateFormats");
+        DateTimeFormatter frm = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm:ss");
+        String testDateStr = "2014-12-24 17:58:57";
+        LocalDateTime date = frm.parseLocalDateTime(testDateStr);
+        TEST(date.getYear() == 2014, "year is 2014");
+        TEST(date.getMonthOfYear() == 12, "month is 12 -- " + date.getMonthOfYear());
+        TEST(date.getDayOfMonth() == 24, "day is 24");
+        TEST(date.getHourOfDay() == 17, "hour is 17");
+        TEST(date.getMinuteOfHour() == 58, "minute is 58");
+        TEST(date.getSecondOfMinute() == 57, "second is 57");
     }
 
     public static void TEST(boolean result, String msg) {

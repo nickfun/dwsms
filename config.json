@@ -1,7 +1,8 @@
 {
     "appName": "dwsms",
-    "dateFormatPattern": "YYYY-MM-DD HH:mm:ss",
+    "dateFormatPattern": "YYYY-MM-dd HH:mm:ss",
     "fromPhoneNumber": "+15105557777",
+    "frequency": 15,
     
     "server": {
         "type": "default",
