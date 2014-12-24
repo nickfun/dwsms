@@ -1,0 +1,12 @@
+#+TITLE: DWSMS Planning file
+
+* Planning [2/5]
+
+** DONE Get URL Resources loaded into DW server
+** DONE Serve static files using AssetBundle
+** TODO Should load Twilio dev tokens from config.json
+** TODO should put all logs to /logs folder
+** TODO User can submit a future message [0/3]
+*** TODO message is a phone number, text, and date
+*** TODO message is stored in a priortity queue based on date
+*** TODO have a Resource to view submitted messages to verify they were saved
