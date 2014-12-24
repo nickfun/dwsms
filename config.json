@@ -22,14 +22,25 @@
     
     "logging": {
         "level": "TRACE",
+        "loggers": {
+            "io.dropwizard": "INFO",
+            "gs.nick": "TRACE",
+            "org.eclipse": "ERROR",
+            "javax.management": "ERROR",
+            "com.sun.jersey": "ERROR"
+        },
         "appenders": [
             {
                 "type": "file",
                 "currentLogFilename": "./logs/current.log",
-                "threshold": "ALL",
+                "threshold": "INFO",
                 "archive": true,
                 "archivedLogFilenamePattern": "./log/archive-%d.log",
-                "archivedFileCount": 14,
+                "archivedFileCount": 14
+            },
+            {
+                "type": "console",
+                "threshold": "DEBUG"
             }
         ]
     }

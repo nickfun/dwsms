@@ -11,5 +11,9 @@ public class BasicView extends View {
     public BasicView() {
         super("basic-view.ftl");
     }
+    
+    public BasicView(String file) {
+        super(file);
+    }
 
 }
