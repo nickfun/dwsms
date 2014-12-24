@@ -1,3 +1,5 @@
 *~
 target/
 logs/
+secrets.txt
+dev-config.json
