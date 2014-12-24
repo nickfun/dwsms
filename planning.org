@@ -1,11 +1,17 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [4/9]
+* Planning [6/11]
 
 ** DONE Get URL Resources loaded into DW server
 ** DONE Serve static files using AssetBundle
 ** DONE Should build simple HTML pages with FreeMarker backed views
 ** DONE Should use FreeMarker inheritance to have flexible html
+** DONE Parse a user submitted date into a LocalDateTime object
+   CLOCK: [2014-12-24 Wed 11:24]--[2014-12-24 Wed 11:30] =>  0:06
+** DONE Load the date format string from config file, pass to whoever needs it
+   CLOCK: [2014-12-24 Wed 11:30]--[2014-12-24 Wed 11:49] =>  0:19
+** TODO Load the "from" phone number from config file
+   CLOCK: [2014-12-24 Wed 11:49]
 ** TODO Setup Backbone/Marionette app
 *** Is this needed?
 *** Maybe do SPA as a stretch goal...

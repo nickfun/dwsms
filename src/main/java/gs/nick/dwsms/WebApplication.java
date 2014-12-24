@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WebApplication extends Application<MyConfig> {
-    
+
     private static Logger log;
 
     public static void main(String[] args) throws Exception {
@@ -26,11 +26,11 @@ public class WebApplication extends Application<MyConfig> {
     }
 
     @Override
-    public void run(MyConfig t, Environment e) throws Exception {
+    public void run(MyConfig appConfig, Environment e) throws Exception {
         log.info("app begins");
         log.info("java is" + System.getProperty("java.version"));
-        e.jersey().register(new IndexResource());
-        e.healthChecks().register("dummy", new HealthCheck(){
+        e.jersey().register(new IndexResource(appConfig));
+        e.healthChecks().register("dummy", new HealthCheck() {
 
             @Override
             protected HealthCheck.Result check() throws Exception {

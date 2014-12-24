@@ -5,6 +5,7 @@ import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.MessageFactory;
 import com.twilio.sdk.resource.instance.Message;
+import gs.nick.dwsms.MyConfig;
 import gs.nick.dwsms.models.TxtMessage;
 import gs.nick.dwsms.views.BasicView;
 import java.io.IOException;
@@ -22,6 +23,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 /**
  *
@@ -31,9 +34,13 @@ import org.joda.time.LocalDateTime;
 public class IndexResource {
 
     private Logger log;
+    private MyConfig config;
+    private DateTimeFormatter dateFormatter;
 
-    public IndexResource() {
+    public IndexResource(MyConfig appConfig) {
         log = LoggerFactory.getLogger(IndexResource.class);
+        config = appConfig;
+        dateFormatter = DateTimeFormat.forPattern(config.getDateFormatPattern());
     }
 
     @GET
@@ -59,11 +66,13 @@ public class IndexResource {
         msg.body = body;
         msg.from = "+15104612710";
         msg.to = to;
-        msg.send = LocalDateTime.now();
+        if (date != null) {
+            msg.send = LocalDateTime.parse(date, dateFormatter);
+        }
         if (msg.isValid()) {
             return oMapper.writeValueAsString(msg);
         } else {
-            return "msg is not valid :-(";
+            return "{\"msg\":\"msg object is not valid\"}";
         }
     }
 

@@ -1,4 +1,8 @@
 {
+    "appName": "dwsms",
+    "dateFormatPattern": "YYYY-MM-DD HH:mm:ss",
+    "fromPhoneNumber": "+15105557777",
+    
     "server": {
         "type": "default",
         "gzip": {
@@ -17,8 +21,6 @@
             }
         ]
     },
-    
-    "appName": "dwsms",
     
     "logging": {
         "level": "TRACE",

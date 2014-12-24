@@ -12,3 +12,7 @@ GET http://localhost:8080/public/test.html
 
 GET http://localhost:8080/with-view
 
+# Send nothing to the submit endpoint, should get a JSON error
+
+POST http://localhost:8080/submit
+
