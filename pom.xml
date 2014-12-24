@@ -4,7 +4,7 @@
 
     <groupId>gs.nick</groupId>
     <artifactId>dwsms</artifactId>
-    <version>SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   
 
     <properties>
