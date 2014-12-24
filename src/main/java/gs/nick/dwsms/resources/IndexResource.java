@@ -8,14 +8,15 @@ package gs.nick.dwsms.resources;
 import com.codahale.metrics.annotation.Timed;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
-import static com.twilio.sdk.examples.RestExamples.ACCOUNT_SID;
-import static com.twilio.sdk.examples.RestExamples.AUTH_TOKEN;
 import com.twilio.sdk.resource.factory.MessageFactory;
 import com.twilio.sdk.resource.instance.Message;
+import gs.nick.dwsms.views.BasicView;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.http.NameValuePair;
@@ -57,5 +58,13 @@ public class IndexResource {
         MessageFactory messageFactory = client.getAccount().getMessageFactory();
         Message message = messageFactory.create(params);
         System.out.println(message.getSid());
+    }
+    
+    @GET
+    @Path("/with-view")
+    @Timed
+    @Produces(MediaType.TEXT_HTML)
+    public BasicView getWithView() {
+        return new BasicView();
     }
 }
