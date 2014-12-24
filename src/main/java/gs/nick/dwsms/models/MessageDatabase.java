@@ -27,7 +27,7 @@ public class MessageDatabase {
 
         @Override
         public int compare(TxtMessage t, TxtMessage t1) {
-            return t.send.compareTo(t1.send);
+            return t1.send.compareTo(t.send);
         }
     }
 
@@ -42,7 +42,7 @@ public class MessageDatabase {
     public MessageDatabase(int max) {
         msgQueue = new PriorityQueue<>(10, new TxtMessageComparator());
         log = LoggerFactory.getLogger(MessageDatabase.class);
-        log.debug("new database object");
+        log.debug("new database object, max is " + max);
         this.max = max;
     }
     
@@ -76,6 +76,10 @@ public class MessageDatabase {
     
     public Iterator<TxtMessage> iterator() {
         return msgQueue.iterator();
+    }
+    
+    public int size() {
+        return msgQueue.size();
     }
     
     public String toJson() throws IOException {

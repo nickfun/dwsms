@@ -17,12 +17,37 @@ public class Tests {
     public static void main(String[] args) throws Exception {
         Tests t = new Tests();
         t.testDbOrder();
+        t.testRemoval();
     }
-    
-    public void assertz(boolean test, String msg) {
-        if (!test) {
-            throw new RuntimeException("assert fail: " + msg);
+
+    public static void TEST(boolean result, String msg) {
+        if (result) {
+            System.out.println("PASS: ___ " + msg);
+        } else {
+            System.out.println("FAIL: *** " + msg);
+            throw new RuntimeException("TEST failed: " + msg);
         }
+    }
+
+    public void testRemoval() throws Exception {
+        System.out.println("testRemoval");
+        MessageDatabase db = new MessageDatabase(20);
+        TxtMessage msg;
+        msg = new TxtMessage();
+        msg.send = LocalDateTime.now();
+        db.add(msg);
+        msg = new TxtMessage();
+        msg.send = LocalDateTime.now().minusDays(20);
+        db.add(msg);
+        msg = new TxtMessage();
+        msg.send = LocalDateTime.now().minusDays(30);
+        db.add(msg);
+        msg = new TxtMessage();
+        msg.send = LocalDateTime.now().minusDays(40);
+        db.add(msg);
+        TEST(4 == db.size(), "size should be 4");
+        db.pop(LocalDateTime.now().minusYears(10));
+        TEST(3 == db.size(), "size should be 3");
     }
 
     public void testDbOrder() throws Exception {
@@ -31,15 +56,18 @@ public class Tests {
         TxtMessage m1 = new TxtMessage();
         m1.send = LocalDateTime.now();
         TxtMessage m2 = new TxtMessage();
-        m2.send = LocalDateTime.now().minusMinutes(400);
+        m2.send = LocalDateTime.now().minusMinutes(30);
         TxtMessage m3 = new TxtMessage();
         m3.send = LocalDateTime.now().minusYears(2);
 
         db.add(m2);
         db.add(m3);
         // i expect m2 to be returned on pop
-        TxtMessage top = db.pop(LocalDateTime.now());
-        assert(top.send.equals(m2));
-        
+        TxtMessage top = db.pop(LocalDateTime.now().minusYears(888));
+        TEST(top != null, "Top should not be null");
+        System.out.println("m2 date is: " + m2.send.toString());
+        System.out.println("top date is: " + top.send.toString());
+        TEST(m2.send.equals(top.send), "top should be m2");
+
     }
 }
