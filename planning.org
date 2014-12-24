@@ -11,7 +11,7 @@
 ** DONE Load the date format string from config file, pass to whoever needs it
    CLOCK: [2014-12-24 Wed 11:30]--[2014-12-24 Wed 11:49] =>  0:19
 ** TODO Load the "from" phone number from config file
-   CLOCK: [2014-12-24 Wed 11:49]
+   CLOCK: [2014-12-24 Wed 11:49]--[2014-12-24 Wed 12:11] =>  0:22
 ** TODO Setup Backbone/Marionette app
 *** Is this needed?
 *** Maybe do SPA as a stretch goal...
