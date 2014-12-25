@@ -24,7 +24,18 @@
                 "type": "http",
                 "port": 8081
             }
-        ]
+        ],
+        "requestLog": {
+            "appenders": [
+                {
+                    "type": "file",
+                    "currentLogFilename": "./logs/requests.log",
+                    "archive": true,
+                    "archivedLogFilenamePattern": "./log/archive-%d.log",
+                    "archivedFileCount": 14
+                }
+            ]
+        }
     },
     
     "logging": {
