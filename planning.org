@@ -1,6 +1,6 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [7/13]
+* Planning [10/13]
 
 ** DONE Get URL Resources loaded into DW server
 ** DONE Serve static files using AssetBundle
@@ -12,18 +12,18 @@
    CLOCK: [2014-12-24 Wed 11:30]--[2014-12-24 Wed 11:49] =>  0:19
 ** DONE Setup a timer task to eventually pull from Message Database
    CLOCK: [2014-12-24 Wed 13:47]--[2014-12-24 Wed 14:08] =>  0:21
-** TODO Pass needed config to MessageSender
-   CLOCK: [2014-12-24 Wed 18:49]
+** DONE Pass needed config to MessageSender
+   CLOCK: [2014-12-24 Wed 18:49]--[2014-12-24 Wed 19:09] =>  0:20
 ** TODO Load the "from" phone number from config file
    CLOCK: [2014-12-24 Wed 11:49]--[2014-12-24 Wed 12:11] =>  0:22
 ** TODO Setup Backbone/Marionette app
 *** Is this needed?
 *** Maybe do SPA as a stretch goal...
-** TODO Should load Twilio dev tokens from config.json
-** TODO should put all logs to /logs folder
-** TODO User can submit a future message [0/3]
-*** TODO message is a phone number, text, and date
-*** TODO message is stored in a priortity queue based on date
+** DONE Should load Twilio dev tokens from config.json
+** DONE should put all logs to /logs folder
+** TODO User can submit a future message [2/3]
+*** DONE message is a phone number, text, and date
+*** DONE message is stored in a priortity queue based on date
 *** TODO have a Resource to view submitted messages to verify they were saved
 
 * Notes

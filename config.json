@@ -3,8 +3,8 @@
     "appName": "dwsms",
     "dateFormatPattern": "YYYY-MM-dd HH:mm:ss",
     "fromPhoneNumber": "+15105557777",
-    "frequency": 1,
-    # TWILIO settings
+    "frequency": 60,
+    # Twilio settings
     "twilioApiAccount": "ACCOUNT_SID_HERE",
     "twilioApiToken": "ACCOUNT_TOKEN_HERE",
     # Dropwizard Settings

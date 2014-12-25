@@ -76,7 +76,7 @@ public class MessageDatabase {
             return null;
         }
         TxtMessage top = msgQueue.peek();
-        if (top.send.isAfter(now)) {
+        if (top.send.isBefore(now)) {
             return msgQueue.poll();
         }
         return null;

@@ -22,7 +22,7 @@ public class Tests {
         t.testRemoval();
         t.testDateFormats();
     }
-    
+
     public void testDateFormats() {
         System.out.println("testDateFormats");
         DateTimeFormatter frm = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm:ss");
@@ -62,7 +62,7 @@ public class Tests {
         msg.send = LocalDateTime.now().minusDays(40);
         db.add(msg);
         TEST(4 == db.size(), "size should be 4");
-        db.pop(LocalDateTime.now().minusYears(10));
+        db.pop(LocalDateTime.now());
         TEST(3 == db.size(), "size should be 3");
     }
 
@@ -79,7 +79,7 @@ public class Tests {
         db.add(m2);
         db.add(m3);
         // i expect m2 to be returned on pop
-        TxtMessage top = db.pop(LocalDateTime.now().minusYears(888));
+        TxtMessage top = db.pop(LocalDateTime.now());
         TEST(top != null, "Top should not be null");
         System.out.println("m2 date is: " + m2.send.toString());
         System.out.println("top date is: " + top.send.toString());
