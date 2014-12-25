@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gs.nick.dwsms.models;
 
 import java.io.IOException;
@@ -15,6 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Database of Messages to be sent in the future.
+ *
+ * The Database has a maximum capacity and will not accept more messages once it
+ * hits capacity.
+ *
+ * Just a PriorityQueue, a simple data structure to have easy access to the next
+ * message to send.
  *
  * @author nick
  */
@@ -26,8 +28,8 @@ public class MessageDatabase {
         }
 
         @Override
-        public int compare(TxtMessage t, TxtMessage t1) {
-            return t1.send.compareTo(t.send);
+        public int compare(TxtMessage alpha, TxtMessage beta) {
+            return beta.send.compareTo(alpha.send);
         }
     }
 
@@ -37,6 +39,7 @@ public class MessageDatabase {
 
     /**
      * Constructor
+     *
      * @param max
      */
     public MessageDatabase(int max) {
@@ -45,11 +48,12 @@ public class MessageDatabase {
         log.debug("new database object, max is " + max);
         this.max = max;
     }
-    
+
     /**
      * Enqueue a TxtMessage as long as the db is not full
+     *
      * @param msg
-     * @throws Exception 
+     * @throws Exception
      */
     public void add(TxtMessage msg) throws Exception {
         if (msgQueue.size() > max) {
@@ -57,11 +61,15 @@ public class MessageDatabase {
         }
         msgQueue.add(msg);
     }
-    
+
     /**
-     * Remove a message & return the message if it happens after the passed in date.
+     * Remove a message & return the message if it happens after the passed in
+     * date.
+     * 
+     * This method can return null, you must check for null when using this method!
+     *
      * @param now
-     * @return 
+     * @return
      */
     public TxtMessage pop(LocalDateTime now) {
         if (msgQueue.isEmpty()) {
@@ -73,24 +81,24 @@ public class MessageDatabase {
         }
         return null;
     }
-    
+
     public Iterator<TxtMessage> iterator() {
         return msgQueue.iterator();
     }
-    
+
     public int size() {
         return msgQueue.size();
     }
-    
+
     public String toJson() throws IOException {
         ObjectMapper oMapper = new ObjectMapper();
         return oMapper.writeValueAsString(msgQueue);
     }
-    
+
     public void saveToFile(String fileName) {
         log.error("database save is not implemented");
     }
-    
+
     public void loadFromFile(String filename) {
         log.error("database load hasnt been written yet sorry buddy");
     }

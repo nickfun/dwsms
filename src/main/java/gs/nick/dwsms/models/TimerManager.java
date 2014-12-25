@@ -16,15 +16,15 @@ public class TimerManager implements Managed {
     private long frequency;
     private Logger log;
 
-    public TimerManager(int seconds) {
+    public TimerManager(int seconds, MyTimerTask toRun) {
         frequency = 1000 * seconds;
         log = LoggerFactory.getLogger(TimerManager.class);
+        task = toRun;
     }
 
     @Override
     public void start() throws Exception {
         timer = new Timer();
-        task = new MyTimerTask();
         timer.schedule(task, 1000, frequency);
         log.info("Scheduled task will run every " + (frequency/1000) + " seconds");
     }

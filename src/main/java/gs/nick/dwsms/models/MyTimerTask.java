@@ -1,6 +1,7 @@
 package gs.nick.dwsms.models;
 
 import java.util.TimerTask;
+import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,15 +11,24 @@ import org.slf4j.LoggerFactory;
  */
 public class MyTimerTask extends TimerTask {
 
-    private Logger log;
+    private final Logger log;
+    private final MessageDatabase msgDb;
 
-    public MyTimerTask() {
+    public MyTimerTask(MessageDatabase db) {
         log = LoggerFactory.getLogger(MyTimerTask.class);
+        msgDb = db;
     }
 
     @Override
     public void run() {
-        log.info("TimerTask RUN RUN RUN");
+        TxtMessage msg = msgDb.pop(LocalDateTime.now());
+        if (msg == null) {
+            log.debug("no msg to send");
+        } else {
+            log.info("Send the message!!! -- " + msg.body);
+            MessageSender.sendMessage(msg);
+            run();
+        }
     }
 
 }

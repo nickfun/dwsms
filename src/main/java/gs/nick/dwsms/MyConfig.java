@@ -23,6 +23,32 @@ public class MyConfig extends Configuration {
     @NotEmpty
     private String fromPhoneNumber;
 
+    @NotNull
+    private String twilioApiAccount;
+
+    @NotNull
+    private String twilioApiToken;
+
+    @JsonProperty
+    public String getTwilioApiToken() {
+        return twilioApiToken;
+    }
+
+    @JsonProperty
+    public void setTwilioApiToken(String token) {
+        twilioApiToken = token;
+    }
+
+    @JsonProperty
+    public String getTwilioApiAccount() {
+        return twilioApiAccount;
+    }
+
+    @JsonProperty
+    public void setTwilioApiAccount(String account) {
+        twilioApiAccount = account;
+    }
+
     @JsonProperty
     public Integer getFrequency() {
         return frequency;

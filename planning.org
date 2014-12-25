@@ -1,6 +1,6 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [6/12]
+* Planning [7/13]
 
 ** DONE Get URL Resources loaded into DW server
 ** DONE Serve static files using AssetBundle
@@ -10,8 +10,10 @@
    CLOCK: [2014-12-24 Wed 11:24]--[2014-12-24 Wed 11:30] =>  0:06
 ** DONE Load the date format string from config file, pass to whoever needs it
    CLOCK: [2014-12-24 Wed 11:30]--[2014-12-24 Wed 11:49] =>  0:19
-** TODO Setup a timer task to pull from the message database
-   CLOCK: [2014-12-24 Wed 13:47]
+** DONE Setup a timer task to eventually pull from Message Database
+   CLOCK: [2014-12-24 Wed 13:47]--[2014-12-24 Wed 14:08] =>  0:21
+** TODO Pass needed config to MessageSender
+   CLOCK: [2014-12-24 Wed 18:49]
 ** TODO Load the "from" phone number from config file
    CLOCK: [2014-12-24 Wed 11:49]--[2014-12-24 Wed 12:11] =>  0:22
 ** TODO Setup Backbone/Marionette app

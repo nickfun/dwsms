@@ -12,7 +12,7 @@ import gs.nick.dwsms.views.BasicView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
+
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -92,21 +92,6 @@ public class IndexResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getMessages() throws IOException {
         return txtDb.toJson();
-    }
-
-    public void sendMessage() throws TwilioRestException {
-        String ACCOUNT_SID = "abc";
-        String AUTH_TOKEN = "123";
-
-        TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
-        // Build a filter for the MessageList
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("Body", "Jenny please?! I love you <3"));
-        params.add(new BasicNameValuePair("To", "+14159352345"));
-        params.add(new BasicNameValuePair("From", "+14158141829"));
-        MessageFactory messageFactory = client.getAccount().getMessageFactory();
-        Message message = messageFactory.create(params);
-        System.out.println(message.getSid());
     }
 
     @GET
