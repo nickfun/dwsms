@@ -1,6 +1,7 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [10/13]
+* Planning [11/14]
+  CLOCK: [2014-12-24 Wed 19:47]--[2014-12-24 Wed 20:59] =>  1:12
 
 ** DONE Get URL Resources loaded into DW server
 ** DONE Serve static files using AssetBundle
@@ -21,10 +22,14 @@
 *** Maybe do SPA as a stretch goal...
 ** DONE Should load Twilio dev tokens from config.json
 ** DONE should put all logs to /logs folder
-** TODO User can submit a future message [2/3]
+** TODO Change submission to take a delta into the future instead of absolute date
+- minutes, days, weeks
+- simple dropdowns
+
+** DONE User can submit a future message [3/3]
 *** DONE message is a phone number, text, and date
 *** DONE message is stored in a priortity queue based on date
-*** TODO have a Resource to view submitted messages to verify they were saved
+*** DONE have a Resource to view submitted messages to verify they were saved
 
 * Notes
 
