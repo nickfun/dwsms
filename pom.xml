@@ -59,6 +59,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.6</version>
                 <configuration>
+                    <outputFile>target/server.jar</outputFile>
                     <createDependencyReducedPom>true</createDependencyReducedPom>
                     <filters>
                         <filter>

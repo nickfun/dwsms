@@ -32,15 +32,15 @@ public class WebApplication extends Application<MyConfig> {
     @Override
     public void run(MyConfig appConfig, Environment e) throws Exception {
         log.info("app begins");
-        log.info("java is" + System.getProperty("java.version"));
-        final MessageDatabase db = new MessageDatabase(9999);
+        log.info("java is " + System.getProperty("java.version"));
+        final MessageDatabase db = new MessageDatabase(500);
         e.jersey().register(new IndexResource(appConfig, db));
-        e.healthChecks().register("dummy", new HealthCheck() {
+        e.healthChecks().register("MessageDatabase", new HealthCheck() {
             
             @Override
             protected HealthCheck.Result check() throws Exception {
-                log.debug("Dummy health check is run");
-                return Result.healthy();
+                log.debug("MessageDatabase health check is run");
+                return Result.healthy("Messages in queue: " + db.size());
             }
         });
         e.lifecycle().manage(new Managed() {

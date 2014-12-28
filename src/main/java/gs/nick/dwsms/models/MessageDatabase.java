@@ -96,11 +96,11 @@ public class MessageDatabase {
     }
 
     public void saveToFile(String fileName) {
-        log.error("database save is not implemented");
+        log.error("database save to file is not implemented");
     }
 
     public void loadFromFile(String filename) {
-        log.error("database load hasnt been written yet sorry buddy");
+        log.error("database load from file hasnt been written yet sorry buddy");
     }
 
 }

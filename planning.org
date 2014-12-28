@@ -1,6 +1,7 @@
 #+TITLE: DWSMS Planning file
 
 * Planning [11/14]
+  CLOCK: [2014-12-28 Sun 12:08]--[2014-12-28 Sun 12:40] =>  0:32
   CLOCK: [2014-12-24 Wed 19:47]--[2014-12-24 Wed 20:59] =>  1:12
 
 ** DONE Get URL Resources loaded into DW server
