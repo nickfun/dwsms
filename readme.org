@@ -15,6 +15,7 @@ This project requires Java 7, Maven, and a Twilio account. [[https://www.twilio.
 
 1. Clone this repo: =git clone http://github.com/nickfun/dwsms.git=
 2. use maven to build the project: =mvn package=
-3. edit =config.json= to contain your Twilio dev tokens
+3. rename the =example-config.json= to =config.json= and edit it to contain your Twilio dev tokens
+   1. note that config.json is in the .gitignore, when you put your tokens in there make sure you continue to keep them secret.
 4. run the jar in /target it contains everything you need: =java -jar target/server.jar server config.json=
 5. By defaul it serves on port 8080, so view it at [[http://localhost:8080/]]
