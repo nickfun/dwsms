@@ -78,6 +78,7 @@ public class IndexResource {
         msg.to = to;
         if (date != null) {
             msg.send = LocalDateTime.parse(date, dateFormatter);
+            log.debug("parsed date is: " + msg.send);
         }
         int status=200;
         String responseBody;

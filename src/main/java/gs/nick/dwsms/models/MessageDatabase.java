@@ -29,7 +29,7 @@ public class MessageDatabase {
 
         @Override
         public int compare(TxtMessage alpha, TxtMessage beta) {
-            return beta.send.compareTo(alpha.send);
+            return alpha.send.compareTo(beta.send);
         }
     }
 
@@ -65,20 +65,25 @@ public class MessageDatabase {
     /**
      * Remove a message & return the message if it happens after the passed in
      * date.
-     * 
-     * This method can return null, you must check for null when using this method!
+     *
+     * This method can return null, you must check for null when using this
+     * method!
      *
      * @param now
      * @return
      */
     public TxtMessage pop(LocalDateTime now) {
         if (msgQueue.isEmpty()) {
+            log.debug("db is empty");
             return null;
         }
         TxtMessage top = msgQueue.peek();
+        log.debug("top is: " + top.send + ", now is: " + now);
         if (top.send.isBefore(now)) {
+            log.debug("top is before now -- the past");
             return msgQueue.poll();
         }
+        log.debug("top is after now -- the future");
         return null;
     }
 

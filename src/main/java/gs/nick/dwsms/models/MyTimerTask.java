@@ -23,7 +23,7 @@ public class MyTimerTask extends TimerTask {
     public void run() {
         TxtMessage msg = msgDb.pop(LocalDateTime.now());
         if (msg == null) {
-            log.debug("all messages have been sent");
+            log.debug("all messages have been sent, " + msgDb.size() + " remain in queue, NOW is: " + LocalDateTime.now());
         } else {
             log.info("Send the message!!! -- " + msg.body);
             MessageSender.sendMessage(msg);
