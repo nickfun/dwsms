@@ -19,6 +19,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.http.NameValuePair;
@@ -52,19 +53,24 @@ public class IndexResource {
     @Produces(MediaType.TEXT_HTML)
     public BasicView getPage() {
         log.info("getPage happened");
-        return new BasicView("submit.ftl");
+        BasicView view = new BasicView("submit.ftl");
+        view.setDateFormat(config.getDateFormatPattern());
+        return view;
     }
 
     @POST
     @Path("/submit")
     @Timed
     @Produces(MediaType.TEXT_HTML)
-    public String onSubmit(
+    public Response onSubmit(
             @FormParam("to") String to,
             @FormParam("date") String date,
             @FormParam("body") String body
     ) throws IOException {
         log.info("/submit happened");
+        log.debug("to is: " + to);
+        log.debug("date is: " + date);
+        log.debug("body is: " + body);
         ObjectMapper oMapper = new ObjectMapper();
         TxtMessage msg = new TxtMessage();
         msg.body = body;
@@ -73,17 +79,22 @@ public class IndexResource {
         if (date != null) {
             msg.send = LocalDateTime.parse(date, dateFormatter);
         }
+        int status=200;
+        String responseBody;
         if (msg.isValid()) {
+            responseBody = oMapper.writeValueAsString(msg);
             try {
                 txtDb.add(msg);
             } catch (Exception ex) {
                 log.error("Trying to add when database full", ex);
-                return "{\"msg\":\"the database is full\"}";
+                responseBody = "{\"msg\":\"the database is full\"}";
+                status=500;
             }
-            return oMapper.writeValueAsString(msg);
         } else {
-            return "{\"msg\":\"msg object is not valid\"}";
+            responseBody = "{\"msg\":\"msg object is not valid\"}";
+            status=400;
         }
+        return Response.status(status).entity(responseBody).build();
     }
 
     @GET
