@@ -1,6 +1,8 @@
 package gs.nick.dwsms.views;
 
 import io.dropwizard.views.View;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormatter;
 
 /**
  *
@@ -24,6 +26,10 @@ public class BasicView extends View {
 
     public void setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
+    }
+    
+    public String getCurrentTime() {
+        return LocalDateTime.now().toString();
     }
 
 }

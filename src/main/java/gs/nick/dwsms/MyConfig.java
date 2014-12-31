@@ -20,6 +20,9 @@ public class MyConfig extends Configuration {
     @NotNull
     private Integer frequency;
 
+    @NotNull
+    private Integer maxLength;
+
     @NotEmpty
     private String fromPhoneNumber;
 
@@ -60,7 +63,7 @@ public class MyConfig extends Configuration {
     }
 
     @JsonProperty
-    public String getFromPrhoneNumber() {
+    public String getFromPhoneNumber() {
         return fromPhoneNumber;
     }
 
@@ -89,4 +92,11 @@ public class MyConfig extends Configuration {
         this.appName = appName;
     }
 
+    public Integer getMaxLength() {
+        return maxLength;
+    }
+
+    public void setMaxLength(Integer maxLength) {
+        this.maxLength = maxLength;
+    }
 }

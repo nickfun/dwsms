@@ -74,7 +74,7 @@ public class IndexResource {
         ObjectMapper oMapper = new ObjectMapper();
         TxtMessage msg = new TxtMessage();
         msg.body = body;
-        msg.from = "+15104612710";
+        msg.from = config.getFromPhoneNumber();
         msg.to = to;
         if (date != null) {
             msg.send = LocalDateTime.parse(date, dateFormatter);

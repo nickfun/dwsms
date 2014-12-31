@@ -2,6 +2,7 @@ package gs.nick.dwsms;
 
 import com.codahale.metrics.health.HealthCheck;
 import gs.nick.dwsms.models.MessageDatabase;
+import gs.nick.dwsms.models.MessageSender;
 import gs.nick.dwsms.models.MyTimerTask;
 import gs.nick.dwsms.models.TimerManager;
 import gs.nick.dwsms.resources.IndexResource;
@@ -35,6 +36,8 @@ public class WebApplication extends Application<MyConfig> {
         log.info("java is " + System.getProperty("java.version"));
         final MessageDatabase db = new MessageDatabase(500);
         e.jersey().register(new IndexResource(appConfig, db));
+        // provide twilio auth
+        MessageSender.setAuth(appConfig.getTwilioApiAccount(), appConfig.getTwilioApiToken());
         e.healthChecks().register("MessageDatabase", new HealthCheck() {
             
             @Override

@@ -1,6 +1,7 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [11/14]
+* Planning [13/16]
+  CLOCK: [2014-12-30 Tue 23:09]--[2014-12-31 Wed 00:22] =>  1:13
   CLOCK: [2014-12-28 Sun 12:08]--[2014-12-28 Sun 12:40] =>  0:32
   CLOCK: [2014-12-24 Wed 19:47]--[2014-12-24 Wed 20:59] =>  1:12
 
@@ -16,7 +17,7 @@
    CLOCK: [2014-12-24 Wed 13:47]--[2014-12-24 Wed 14:08] =>  0:21
 ** DONE Pass needed config to MessageSender
    CLOCK: [2014-12-24 Wed 18:49]--[2014-12-24 Wed 19:09] =>  0:20
-** TODO Load the "from" phone number from config file
+** DONE Load the "from" phone number from config file
    CLOCK: [2014-12-24 Wed 11:49]--[2014-12-24 Wed 12:11] =>  0:22
 ** TODO Setup Backbone/Marionette app
 *** Is this needed?
@@ -31,6 +32,11 @@
 *** DONE message is a phone number, text, and date
 *** DONE message is stored in a priortity queue based on date
 *** DONE have a Resource to view submitted messages to verify they were saved
+
+** TODO Validate that message length is below a maximum
+- SMS can be only 160 chars
+- Twilio trial account starts with a 38 char message 
+** DONE Set a max length in config file
 
 * Notes
 

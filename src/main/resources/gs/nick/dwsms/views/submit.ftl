@@ -4,38 +4,55 @@
 <@page_head_common/>
 <title>Submit New</title>
 <style>
-    .date-format-example {
-        color: #aaa;
+    label,
+    p {
+        font-size: 1.5em;
     }
 </style>
 </#macro>
 
 <#macro page_body>
-<h1>Submit</h1>
-<div class="pure-g">
-    <div class="pure-u-1 pure-u-md-1-2">
-        Hey this place is like 
-        <a href="http://www.futureme.org/" target="_blank">future me</a>
-        but for txt messages. Fill out the details below and we will 
-        txt you in the future.
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <h1>SMS To The Future</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <p>
+                Hey this place is like 
+                <a href="http://www.futureme.org/" target="_blank">future me</a>
+                but for txt messages. Fill out the details below and we will 
+                txt you in the future.
+            </p>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <form method="post" action="/submit">
+                <div class="form-group">
+                    <label for="to">Your Phone Number</label>
+                    <input class="form-control" id="to" name="to" type="text" placeholder="5108952660">
+                </div>
+                <div class="form-group">
+                    <label for="date">When to send<br>
+                        Server time is: <mark>${currentTime}</mark><br>
+                        <span class="date-format-example">Ex: ${dateFormat}</span></label>
+                    <input class="form-control" type="text" name="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="body">Your Message</label>
+                    <textarea class="form-control" id="body" name="body"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-<form class="pure-form pure-form-stacked" method="post" action="/submit">
-    <fieldset>
-        <legend>A Stacked Form</legend>
-        <label for="to">Your phone number</label>
-        <input id="to" name="to" type="text" placeholder="+15108952660">
-
-        <label for="date">When to send<br>
-            <span class="date-format-example">Ex: ${dateFormat}</span></label>
-        <input type="text" name="date" id="date">
-
-        <label for="body">Your Message</label>
-        <textarea id="body" name="body"></textarea>
-        <button type="submit" class="pure-button pure-button-primary">Submit</button>
-    </fieldset>
-</form>
 </#macro>
 
 <@display_page/>

@@ -20,7 +20,7 @@ public class MessageSender {
 
     private static final Logger log = LoggerFactory.getLogger(MessageSender.class);
 
-    private static TwilioRestClient client;
+    private static TwilioRestClient client = null;
 
     public static void setAuth(String ACCOUNT_SID, String AUTH_TOKEN) {
         if (ACCOUNT_SID == null || AUTH_TOKEN == null) {
@@ -28,14 +28,15 @@ public class MessageSender {
             return;
         }
         client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
+        log.debug("Twilio Client created");
     }
 
-    public static boolean sendMessage(TxtMessage msg) {
+    public static boolean dummy_sendMessage(TxtMessage msg) {
         log.info("MESSAGE SENT!! " + msg.body);
         return true;
     }
 
-    public static boolean zzzsendMessage(TxtMessage msg) {
+    public static boolean sendMessage(TxtMessage msg) {
         // copy pasta from 
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("Body", msg.body));
@@ -45,7 +46,7 @@ public class MessageSender {
         Message message;
         try {
             message = messageFactory.create(params);
-            System.out.println(message.getSid());
+            log.info("message sent, SID: " + message.getSid());
             return true;
         } catch (TwilioRestException ex) {
             log.error("Can not send message!", ex);
