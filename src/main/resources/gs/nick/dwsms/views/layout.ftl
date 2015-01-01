@@ -15,6 +15,7 @@
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/2.3.0/backbone.marionette.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
 </#macro>
 
 <#macro page_body_common>
