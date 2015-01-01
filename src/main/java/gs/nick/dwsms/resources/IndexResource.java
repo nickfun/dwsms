@@ -1,33 +1,25 @@
 package gs.nick.dwsms.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.twilio.sdk.TwilioRestClient;
-import com.twilio.sdk.TwilioRestException;
-import com.twilio.sdk.resource.factory.MessageFactory;
-import com.twilio.sdk.resource.instance.Message;
 import gs.nick.dwsms.MyConfig;
 import gs.nick.dwsms.models.MessageDatabase;
 import gs.nick.dwsms.models.TxtMessage;
 import gs.nick.dwsms.views.BasicView;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -61,26 +53,31 @@ public class IndexResource {
     @POST
     @Path("/submit")
     @Timed
-    @Produces(MediaType.TEXT_HTML)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response onSubmit(
             @FormParam("to") String to,
-            @FormParam("date") String date,
+            @FormParam("amount") Integer amount,
+            @FormParam("unit") Integer unit,
             @FormParam("body") String body
     ) throws IOException {
         log.info("/submit happened");
         log.debug("to is: " + to);
-        log.debug("date is: " + date);
+        log.debug("amount is" + amount);
+        log.debug("unit is: " + unit);
         log.debug("body is: " + body);
+        // TODO: need beter validation handling
+        if (to == null || amount == null || unit == null || body == null) {
+            throw new WebApplicationException();
+        }
         ObjectMapper oMapper = new ObjectMapper();
         TxtMessage msg = new TxtMessage();
         msg.body = body;
         msg.from = config.getFromPhoneNumber();
         msg.to = to;
-        if (date != null) {
-            msg.send = LocalDateTime.parse(date, dateFormatter);
-            log.debug("parsed date is: " + msg.send);
-        }
-        int status=200;
+        int secondsInFuture = amount * unit;
+        LocalDateTime date = LocalDateTime.now().plusSeconds(secondsInFuture);
+        msg.send = date;
+        int status = 200;
         String responseBody;
         if (msg.isValid()) {
             responseBody = oMapper.writeValueAsString(msg);
@@ -89,11 +86,11 @@ public class IndexResource {
             } catch (Exception ex) {
                 log.error("Trying to add when database full", ex);
                 responseBody = "{\"msg\":\"the database is full\"}";
-                status=500;
+                status = 500;
             }
         } else {
             responseBody = "{\"msg\":\"msg object is not valid\"}";
-            status=400;
+            status = 400;
         }
         return Response.status(status).entity(responseBody).build();
     }
