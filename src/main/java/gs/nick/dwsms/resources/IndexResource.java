@@ -1,7 +1,7 @@
 package gs.nick.dwsms.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import gs.nick.dwsms.MyConfig;
+import gs.nick.dwsms.ApplicationConfig;
 import gs.nick.dwsms.models.MessageDatabase;
 import gs.nick.dwsms.models.TxtMessage;
 import gs.nick.dwsms.views.BasicView;
@@ -16,8 +16,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,14 +27,12 @@ import org.slf4j.LoggerFactory;
 public class IndexResource {
 
     private Logger log;
-    private MyConfig config;
-    private DateTimeFormatter dateFormatter;
+    private ApplicationConfig config;
     private MessageDatabase txtDb;
 
-    public IndexResource(MyConfig appConfig, MessageDatabase db) {
+    public IndexResource(ApplicationConfig appConfig, MessageDatabase db) {
         log = LoggerFactory.getLogger(IndexResource.class);
         config = appConfig;
-        dateFormatter = DateTimeFormat.forPattern(config.getDateFormatPattern());
         txtDb = db;
     }
 
@@ -46,7 +42,6 @@ public class IndexResource {
     public BasicView getPage() {
         log.info("getPage happened");
         BasicView view = new BasicView("submit.ftl");
-        view.setDateFormat(config.getDateFormatPattern());
         return view;
     }
 

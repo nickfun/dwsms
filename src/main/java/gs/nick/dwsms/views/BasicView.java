@@ -10,8 +10,6 @@ import org.joda.time.format.DateTimeFormatter;
  */
 public class BasicView extends View {
 
-    private String dateFormat;
-
     public BasicView() {
         super("basic-view.ftl");
     }
@@ -20,14 +18,6 @@ public class BasicView extends View {
         super(file);
     }
 
-    public String getDateFormat() {
-        return dateFormat;
-    }
-
-    public void setDateFormat(String dateFormat) {
-        this.dateFormat = dateFormat;
-    }
-    
     public String getCurrentTime() {
         return LocalDateTime.now().toString();
     }

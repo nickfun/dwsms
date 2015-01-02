@@ -15,7 +15,7 @@ import io.dropwizard.views.ViewBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WebApplication extends Application<MyConfig> {
+public class WebApplication extends Application<ApplicationConfig> {
     
     private static Logger log;
     
@@ -25,13 +25,13 @@ public class WebApplication extends Application<MyConfig> {
     }
     
     @Override
-    public void initialize(Bootstrap<MyConfig> btstrp) {
+    public void initialize(Bootstrap<ApplicationConfig> btstrp) {
         btstrp.addBundle(new ViewBundle());
         btstrp.addBundle(new AssetsBundle("/public"));
     }
     
     @Override
-    public void run(MyConfig appConfig, Environment e) throws Exception {
+    public void run(ApplicationConfig appConfig, Environment e) throws Exception {
         log.info("app begins");
         log.info("java is " + System.getProperty("java.version"));
         final MessageDatabase db = new MessageDatabase(500);

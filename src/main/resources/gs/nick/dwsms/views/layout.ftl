@@ -1,5 +1,10 @@
 <#macro page_head_common>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/superhero/bootstrap.min.css">
+<style>
+    a {
+        text-decoration: underline;
+    }
+</style>
 </#macro>
 
 <#macro page_head>

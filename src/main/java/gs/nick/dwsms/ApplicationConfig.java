@@ -9,13 +9,10 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author nick
  */
-public class MyConfig extends Configuration {
+public class ApplicationConfig extends Configuration {
 
     @NotEmpty
     private String appName;
-
-    @NotEmpty
-    private String dateFormatPattern;
 
     @NotNull
     private Integer frequency;
@@ -70,16 +67,6 @@ public class MyConfig extends Configuration {
     @JsonProperty
     public void setFromPhoneNumber(String phone) {
         fromPhoneNumber = phone;
-    }
-
-    @JsonProperty
-    public String getDateFormatPattern() {
-        return dateFormatPattern;
-    }
-
-    @JsonProperty
-    public void setDateFormatString(String format) {
-        dateFormatPattern = format;
     }
 
     @JsonProperty
