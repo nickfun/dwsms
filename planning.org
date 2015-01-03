@@ -1,6 +1,6 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [13/16]
+* Planning [15/18]
   CLOCK: [2014-12-30 Tue 23:09]--[2014-12-31 Wed 00:22] =>  1:13
   CLOCK: [2014-12-28 Sun 12:08]--[2014-12-28 Sun 12:40] =>  0:32
   CLOCK: [2014-12-24 Wed 19:47]--[2014-12-24 Wed 20:59] =>  1:12
@@ -19,12 +19,18 @@
    CLOCK: [2014-12-24 Wed 18:49]--[2014-12-24 Wed 19:09] =>  0:20
 ** DONE Load the "from" phone number from config file
    CLOCK: [2014-12-24 Wed 11:49]--[2014-12-24 Wed 12:11] =>  0:22
-** TODO Setup Backbone/Marionette app
+** DONE Setup Backbone/Marionette app
 *** Is this needed?
-*** Maybe do SPA as a stretch goal...
+- yeah, it's nice to see things update as they happen instead of going through a refresh cycle.
+*** Maybe do SPA as a stretch goal
+- no just keep it simple
+** TODO Backbone should prune list of enqueued messages
+- set a timer when one is made?
+- constantly check with the current list?
+- should i poll /sms for new messages submitted by other people?
 ** DONE Should load Twilio dev tokens from config.json
 ** DONE should put all logs to /logs folder
-** TODO Change submission to take a delta into the future instead of absolute date
+** DONE Change submission to take a delta into the future instead of absolute date
 - minutes, days, weeks
 - simple dropdowns
 
@@ -36,6 +42,10 @@
 ** TODO Validate that message length is below a maximum
 - SMS can be only 160 chars
 - Twilio trial account starts with a 38 char message 
+** TODO Better validation in general
+- frontend should react when a bad form is submitted
+- should check that number being submitted is valid 
+  - valid for USA or the world?
 ** DONE Set a max length in config file
 
 * Notes

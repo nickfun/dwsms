@@ -14,6 +14,9 @@
     select, option {
         text-transform: capitalize;
     }
+    #output-list .send-phone-number {
+        font-family: monospace;
+    }
 </style>
 </#macro>
 
@@ -66,12 +69,11 @@
         </div> 
         <div class="row"> 
             <div class="col-xs-12 col-md-10 col-md-offset-1">
-                <p class="js-date-output"> &nbsp; </p>
                 <div class="form-group">
                     <label for="body">Your Message</label>
                     <textarea class="form-control" id="body" name="body"></textarea>
                 </div>
-
+                <p class="js-date-output"> &nbsp; </p>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default btn-primary">Submit</button>
                 </div>
@@ -92,7 +94,7 @@
 
 <script src="/public/frontend.js"></script>
 <script type="text/template" id="tpl-row">
-    <li><%- sendTime %> <%- phoneNumber %></li>
+    <li>Send to <span class="send-phone-number"><%- phoneNumber %></span> on <%- sendTime %></li>
 </script>
 </#macro>
 
