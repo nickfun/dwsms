@@ -35,15 +35,15 @@
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-            <form method="post" action="/submit" class="form">
-
+    <form method="post" action="/submit" class="form">
+        <div class="row">
+            <div class="col-xs-6 col-md-5 col-md-offset-1">
                 <div class="form-group">
                     <label for="to">Your Phone Number</label>
                     <input class="form-control" id="to" name="to" type="text" placeholder="5108952660">
                 </div>
-
+            </div>
+            <div class="col-xs-6 col-md-5">
                 <div class="form-group">
                     <p>When to send?
                         <!--<br>Current server time is <mark>${currentTime}</mark>-->
@@ -64,9 +64,12 @@
                         <option value="604800">weeks</option>
                     </select>
                     <p>... from now</p>
-                    <p class="js-date-output"> &nbsp; </p>
                 </div>
-
+            </div>
+        </div> 
+        <div class="row"> 
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <p class="js-date-output"> &nbsp; </p>
                 <div class="form-group">
                     <label for="body">Your Message</label>
                     <textarea class="form-control" id="body" name="body"></textarea>
@@ -75,7 +78,13 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-default btn-primary">Submit</button>
                 </div>
-            </form>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <h3>Enqueued Messages</h3>
+            <div id="output-list"></div>
         </div>
     </div>
 </div>
@@ -84,29 +93,10 @@
 <#macro js_tags>
 <@js_tags_common/>
 
-<script>
-    function showSelectedTime() {
-        var $output = $('.js-date-output');
-        var now = new moment();
-        var amount = $('select[name=amount]').val();
-        var unit = $('select[name=unit]').val();
-        now.add(amount * unit, 'seconds');
-        $output.empty();
-        $output.css('visibility', 'visible');
-        $output.text("Message will be sent at: " + now.format("LLLL"));
-        console.log("showSelectedTime()");
-        console.log("Now is: " + (new moment().format("LLLL")));
-        console.log("Will send in: " + now.format("LLLL"));
-        console.log("=====");
-    }
-
-    $(document).ready(function() {
-        $('select').change(showSelectedTime).change();
-        window.setInterval(showSelectedTime, 10 * 1000);
-        $('input[name=to]').focus();
-    });
+<script src="/public/frontend.js"></script>
+<script type="text/template" id="tpl-row">
+    <li><%- sendTime %> <%- phoneNumber %></li>
 </script>
-
 </#macro>
 
 <@display_page/>
