@@ -45,9 +45,7 @@
             </div>
             <div class="col-xs-6 col-md-5">
                 <div class="form-group">
-                    <p>When to send?
-                        <!--<br>Current server time is <mark>${currentTime}</mark>-->
-                    </p>
+                    <p>Send in...</p>
                     <select name="amount" class="form-control">
                         <option>1</option>
                         <option>2</option>
@@ -63,7 +61,6 @@
                         <option value="86400">days</option>
                         <option value="604800">weeks</option>
                     </select>
-                    <p>... from now</p>
                 </div>
             </div>
         </div> 
