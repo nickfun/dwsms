@@ -1,6 +1,6 @@
 #+TITLE: DWSMS Planning file
 
-* Planning [15/18]
+* Planning [15/19]
   CLOCK: [2014-12-30 Tue 23:09]--[2014-12-31 Wed 00:22] =>  1:13
   CLOCK: [2014-12-28 Sun 12:08]--[2014-12-28 Sun 12:40] =>  0:32
   CLOCK: [2014-12-24 Wed 19:47]--[2014-12-24 Wed 20:59] =>  1:12
@@ -48,6 +48,10 @@
   - valid for USA or the world?
 ** DONE Set a max length in config file
 
+** TODO Server and client should represent a message as seconds until sent, or always UTC time?
+- seconds until send could work, but then every time i request it the =send= value is different
+- UTC is better for co-ordination (right there in the name), need to adjust java backend to deal with timezone :(
+- frontend has to do conversion to and from UTC, should be easy with moment.js
 * Notes
 
 ** Don't consider timezones
