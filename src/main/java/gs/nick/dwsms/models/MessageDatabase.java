@@ -107,5 +107,9 @@ public class MessageDatabase {
     public void loadFromFile(String filename) {
         log.error("database load from file hasnt been written yet sorry buddy");
     }
+    
+    public void clear() {
+        msgQueue.clear();
+    }
 
 }

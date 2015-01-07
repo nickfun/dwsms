@@ -20,3 +20,12 @@ POST http://localhost:8080/submit
 
 GET http://localhost:8080/sms
 
+# Clear all messages in the database
+
+GET http://localhost:8080/clear
+
+# Submit
+
+POST http://localhost:8080/submit
+
+to=141414&unit=60&amount=3&body=hurf%20durf

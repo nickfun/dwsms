@@ -105,4 +105,13 @@ public class IndexResource {
     public BasicView getWithView() {
         return new BasicView();
     }
+    
+    @GET
+    @Path("/clear")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String clear() {
+        int size = txtDb.size();
+        txtDb.clear();
+        return "Database has been cleared\nMessages erased: " + size;
+    }
 }

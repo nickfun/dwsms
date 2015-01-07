@@ -12,6 +12,7 @@ import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
+import java.util.TimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,7 @@ public class WebApplication extends Application<ApplicationConfig> {
     private static Logger log;
     
     public static void main(String[] args) throws Exception {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         log = LoggerFactory.getLogger(WebApplication.class);
         new WebApplication().run(args);
     }
