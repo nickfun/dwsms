@@ -34,8 +34,8 @@ public class WebApplication extends Application<ApplicationConfig> {
     
     @Override
     public void run(ApplicationConfig appConfig, Environment e) throws Exception {
+        logSystemInformation(log);
         log.info("app begins");
-        log.info("java is " + System.getProperty("java.version"));
         final MessageDatabase db = new MessageDatabase(500);
         e.jersey().register(new IndexResource(appConfig, db));
         // provide twilio auth
@@ -63,4 +63,14 @@ public class WebApplication extends Application<ApplicationConfig> {
         MyTimerTask task = new MyTimerTask(db);
         e.lifecycle().manage(new TimerManager(appConfig.getFrequency(), task));
     }
+
+    public void logSystemInformation(Logger log) {
+        log.info("java.version = " + System.getProperty("java.version"));
+        log.info("java.vm.name = " + System.getProperty("java.vm.name"));
+        log.info("os.name = " + System.getProperty("os.name"));
+        log.info("os.arch = " + System.getProperty("os.arch"));
+        log.info("os.version = " + System.getProperty("os.version"));
+    }
 }
+
+
