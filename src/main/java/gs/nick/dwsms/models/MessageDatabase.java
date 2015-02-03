@@ -56,7 +56,7 @@ public class MessageDatabase {
      * @throws Exception
      */
     public void add(TxtMessage msg) throws Exception {
-        if (msgQueue.size() > max) {
+        if (msgQueue.size() >= max) {
             throw new Exception("Database is full");
         }
         msgQueue.add(msg);

@@ -62,6 +62,68 @@ public class MessageDatabaseTest {
 		instance.add(msg);
 		assertEquals(1, instance.size());
 		assertEquals(msg, instance.pop(LocalDateTime.now().plusDays(100)));
+		assertEquals(0, instance.size());
+	}
+
+	@Test
+	public void testPopCorrectOrder() throws Exception {
+		System.out.println("testPopCorrectOrder");
+		MessageDatabase instance = new MessageDatabase(10);
+		LocalDateTime now = LocalDateTime.now();
+		TxtMessage m1, m2, m3, result;
+		m1 = new TxtMessage();
+		m2 = new TxtMessage();
+		m3 = new TxtMessage();
+		m1.body = "abc";
+		m1.from = "def";
+		m1.to = "ghi";
+		m1.send = now.minusDays(1);
+		m2.body = "abc";
+		m2.from = "def";
+		m2.to = "ghi";
+		m2.send = now.minusDays(2);
+		m3.body = "abc";
+		m3.from = "def";
+		m3.to = "ghi";
+		m3.send = now.minusDays(3);
+		// POP() should always return the oldest date that is older than the supplied date
+		instance.add(m3);
+		instance.add(m2);
+		instance.add(m1);
+
+		result = instance.pop(now);
+		assertTrue(m3.equals(result));
+		result = instance.pop(now);
+		assertTrue(m2.equals(result));
+		result = instance.pop(now);
+		assertTrue(m1.equals(result));
+	}
+
+	@Test
+	public void testMaxCapacity() throws Exception {
+		System.out.println("testMaxCapacity");
+		MessageDatabase instance = new MessageDatabase(1);
+		LocalDateTime now = LocalDateTime.now();
+		TxtMessage m1, m2;
+		m1 = new TxtMessage();
+		m2 = new TxtMessage();
+		m1.body = "abc";
+		m1.from = "def";
+		m1.to = "ghi";
+		m1.send = now.minusDays(1);
+		m2.body = "abc";
+		m2.from = "def";
+		m2.to = "ghi";
+		m2.send = now.minusDays(2);
+		boolean bWasThrown = false;
+		instance.add(m2); 
+		try {
+			instance.add(m1);
+		} catch (Exception ex) {
+			System.out.println("Catch!!!");
+			bWasThrown = true;
+		}
+		assertTrue(bWasThrown);
 	}
 
 	/**
