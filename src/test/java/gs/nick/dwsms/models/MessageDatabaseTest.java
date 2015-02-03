@@ -5,7 +5,6 @@
  */
 package gs.nick.dwsms.models;
 
-import java.util.Iterator;
 import org.joda.time.LocalDateTime;
 import org.junit.After;
 import org.junit.Before;

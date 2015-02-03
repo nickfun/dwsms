@@ -3,7 +3,7 @@ package gs.nick.dwsms;
 import com.codahale.metrics.health.HealthCheck;
 import gs.nick.dwsms.models.MessageDatabase;
 import gs.nick.dwsms.models.MessageSender;
-import gs.nick.dwsms.models.MyTimerTask;
+import gs.nick.dwsms.models.MessageSenderTask;
 import gs.nick.dwsms.models.TimerManager;
 import gs.nick.dwsms.resources.IndexResource;
 import io.dropwizard.Application;
@@ -60,7 +60,7 @@ public class WebApplication extends Application<ApplicationConfig> {
                 db.saveToFile("shutdown-database.txt");
             }
         });
-        MyTimerTask task = new MyTimerTask(db);
+        MessageSenderTask task = new MessageSenderTask(db);
         e.lifecycle().manage(new TimerManager(appConfig.getFrequency(), task));
     }
 

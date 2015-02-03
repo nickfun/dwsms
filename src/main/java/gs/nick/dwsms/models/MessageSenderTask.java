@@ -9,13 +9,13 @@ import org.slf4j.LoggerFactory;
  *
  * @author nick
  */
-public class MyTimerTask extends TimerTask {
+public class MessageSenderTask extends TimerTask {
 
     private final Logger log;
     private final MessageDatabase msgDb;
 
-    public MyTimerTask(MessageDatabase db) {
-        log = LoggerFactory.getLogger(MyTimerTask.class);
+    public MessageSenderTask(MessageDatabase db) {
+        log = LoggerFactory.getLogger(MessageSenderTask.class);
         msgDb = db;
     }
 

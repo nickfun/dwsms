@@ -11,12 +11,12 @@ import org.slf4j.LoggerFactory;
  */
 public class TimerManager implements Managed {
 
-    private MyTimerTask task;
+    private final MessageSenderTask task;
     private Timer timer;
-    private long frequency;
-    private Logger log;
+    private final long frequency;
+    private final Logger log;
 
-    public TimerManager(int seconds, MyTimerTask toRun) {
+    public TimerManager(int seconds, MessageSenderTask toRun) {
         frequency = 1000 * seconds;
         log = LoggerFactory.getLogger(TimerManager.class);
         task = toRun;
