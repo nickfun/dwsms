@@ -65,11 +65,15 @@ public class WebApplication extends Application<ApplicationConfig> {
     }
 
     public void logSystemInformation(Logger log) {
+		log.info("System Info:");
         log.info("java.version = " + System.getProperty("java.version"));
         log.info("java.vm.name = " + System.getProperty("java.vm.name"));
+		log.info("java.vendor = " + System.getProperty("java.vendor"));
+		log.info("java.class.path = " + System.getProperty("java.class.path"));
         log.info("os.name = " + System.getProperty("os.name"));
         log.info("os.arch = " + System.getProperty("os.arch"));
         log.info("os.version = " + System.getProperty("os.version"));
+		log.info("----------");
     }
 }
 

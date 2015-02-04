@@ -116,7 +116,7 @@ public class MessageDatabaseTest {
 		m2.to = "ghi";
 		m2.send = now.minusDays(2);
 		boolean bWasThrown = false;
-		instance.add(m2); 
+		instance.add(m2);
 		try {
 			instance.add(m1);
 		} catch (Exception ex) {
@@ -161,6 +161,40 @@ public class MessageDatabaseTest {
 		assertEquals(1, instance.size());
 		instance.clear();
 		assertEquals(0, instance.size());
+	}
+
+	@Test
+	public void testReturnsNullWhenNothingOld() throws Exception {
+		System.out.println("testReturnsNullWhenNothingOld");
+		TxtMessage msg = new TxtMessage();
+		msg.body = "test1";
+		msg.from = "from";
+		msg.to = "test1";
+		msg.send = LocalDateTime.now().plusDays(3);
+		MessageDatabase instance = new MessageDatabase(3);
+		instance.add(msg);
+		TxtMessage result = instance.pop(LocalDateTime.now());
+		assertTrue(result == null);
+		assertEquals(1, instance.size());
+	}
+
+	@Test
+	public void testDbOrder() throws Exception {
+		System.out.println("testDbOrder");
+		MessageDatabase db = new MessageDatabase(4);
+		TxtMessage m1 = new TxtMessage();
+		m1.send = LocalDateTime.now();
+		TxtMessage m2 = new TxtMessage();
+		m2.send = LocalDateTime.now().minusHours(3);
+		TxtMessage m3 = new TxtMessage();
+		m3.send = LocalDateTime.now().minusHours(5);
+
+		db.add(m3);
+		db.add(m2);
+
+		TxtMessage top = db.pop(LocalDateTime.now());
+		assertTrue(top != null);
+		assertEquals(m3, top);
 	}
 
 }
