@@ -33,8 +33,9 @@ app.MessageList = Backbone.Collection.extend({
     },
     parse: function (response, options) {
         _.each(response, function (sms) {
+            sms.send[1]--;
             sms.send = new moment.utc(sms.send);
-			sms.send.local();
+            sms.send.local();
         });
         return response;
     }
