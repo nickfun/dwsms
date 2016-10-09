@@ -4,9 +4,9 @@
     "frequency": 60,
     "maxLength": 120,
     # Twilio settings
-    "twilioApiAccount": "aaa",
-    "twilioApiToken": "bbb",
-    "fromPhoneNumber": "5553334444",
+    "twilioApiAccount": "AC1219be621daf4a2a3b9f6900a3d13829",
+    "twilioApiToken": "8317a3726f2f6d47a01596a162a2b3cb",
+    "fromPhoneNumber": "+15104612710",
     # Dropwizard Settings
     "server": {
         "type": "default",

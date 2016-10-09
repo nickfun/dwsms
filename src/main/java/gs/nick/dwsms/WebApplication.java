@@ -6,6 +6,7 @@ import gs.nick.dwsms.models.MessageSender;
 import gs.nick.dwsms.models.MessageSenderTask;
 import gs.nick.dwsms.models.TimerManager;
 import gs.nick.dwsms.resources.IndexResource;
+import gs.nick.dwsms.resources.ScalaResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.lifecycle.Managed;
@@ -38,6 +39,7 @@ public class WebApplication extends Application<ApplicationConfig> {
         log.info("app begins");
         final MessageDatabase db = new MessageDatabase(500);
         e.jersey().register(new IndexResource(appConfig, db));
+	e.jersey().register(new ScalaResource());
         // provide twilio auth
         MessageSender.setAuth(appConfig.getTwilioApiAccount(), appConfig.getTwilioApiToken());
         e.healthChecks().register("MessageDatabase", new HealthCheck() {
